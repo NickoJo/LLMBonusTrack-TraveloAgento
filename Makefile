@@ -1,4 +1,4 @@
-.PHONY: setup install model index run test demo demo-failover demo-degraded clean help
+.PHONY: setup install model index run test demo demo-failover demo-degraded clean help docker-build docker-run docker-clean
 
 # ─── Переменные ────────────────────────────────────────────
 PYTHON   := python3
@@ -28,6 +28,11 @@ help:
 	@echo "    make demo             — стандартный запуск"
 	@echo "    make demo-failover    — отель недоступен → failover на Airbnb"
 	@echo "    make demo-degraded    — оба источника отелей недоступны"
+	@echo ""
+	@echo "  Docker:"
+	@echo "    make docker-build — собрать образ (модель + индекс внутри, ~5 мин)"
+	@echo "    make docker-run   — запустить контейнер (нужен .env)"
+	@echo "    make docker-clean — удалить образ и контейнеры"
 	@echo ""
 	@echo "  Утилиты:"
 	@echo "    make clean      — удалить кэш и логи"
@@ -79,6 +84,24 @@ demo-failover:
 demo-degraded:
 	@echo "⚠️  Demo: оба источника отелей недоступны → только рейс"
 	MOCK_BOOKING_FAIL=true MOCK_AIRBNB_FAIL=true $(PYTHON) main.py
+
+# ─── Docker ────────────────────────────────────────────────
+docker-build:
+	@echo "🐳 Собираем Docker-образ (модель + индекс внутри)..."
+	docker build -t travelo-agento .
+	@echo "✅ Образ travelo-agento готов"
+
+docker-run:
+	@if [ ! -f .env ]; then \
+		echo "❌ Файл .env не найден. Выполните: cp .env.example .env"; \
+		exit 1; \
+	fi
+	docker compose run --rm travelo
+
+docker-clean:
+	@echo "🧹 Удаляем образ и контейнеры..."
+	docker compose down --rmi local 2>/dev/null || true
+	@echo "✅ Готово"
 
 # ─── Утилиты ───────────────────────────────────────────────
 clean:

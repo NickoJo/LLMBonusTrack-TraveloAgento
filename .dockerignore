@@ -1,0 +1,36 @@
+# Секреты — никогда не запекать в образ
+.env
+
+# Кэш Python
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# Логи
+logs/*.jsonl
+
+# ChromaDB индекс — строится при docker build
+data/travel_kb/index/
+
+# Тесты и документация — не нужны в образе
+tests/
+docs/
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+
+# macOS
+.DS_Store
+
+# Виртуальные окружения
+.venv/
+venv/
+env/

@@ -1,0 +1,19 @@
+services:
+  travelo:
+    build: .
+    image: travelo-agento
+
+    # Переменные из .env — API-ключ и флаги пробрасываются в контейнер,
+    # но сам файл .env НЕ копируется в образ
+    env_file: .env
+
+    # Логи на хосте, чтобы читать их вне контейнера
+    volumes:
+      - ./logs:/app/logs
+
+    # Обязательно для интерактивного CLI (input())
+    stdin_open: true
+    tty: true
+
+    # Если упал — не перезапускаем (это CLI, не сервис)
+    restart: "no"

@@ -61,7 +61,36 @@ make setup                    # install + model + index
 make run                      # запуск
 ```
 
-### Вариант В — вручную
+### Вариант В — Docker 
+
+Требуется **Docker Desktop**. 
+
+```bash
+git clone <repo-url>
+cd LLMBonusTrack-TraveloAgento
+
+cp .env.example .env          # вставьте DEEPSEEK_API_KEY в .env
+
+make docker-build             # сборка образа (~5 мин, скачивает модель и строит индекс)
+make docker-run               # запуск чата
+```
+
+Или без make:
+
+```bash
+docker build -t travelo-agento .
+docker compose run --rm travelo
+```
+
+Логи пишутся в `./logs/` на хосте — доступны вне контейнера.
+
+> **Airbnb MCP:** для реального поиска жилья добавьте в `.env`:
+> ```
+> USE_REAL_AIRBNB_MCP=true
+> ```
+> Node.js уже есть внутри образа — дополнительно ничего устанавливать не нужно.
+
+### Вариант Г — вручную
 
 ```bash
 pip install -r requirements.txt
