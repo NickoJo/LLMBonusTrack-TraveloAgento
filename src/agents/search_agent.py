@@ -14,7 +14,11 @@ from models.schemas import (
 )
 from tools.flights import FlightSearchError, FlightSearchResult, search_flights
 from tools.hotels import HotelSearchError, HotelSearchResult, search_hotels
-from tools.rentals import RentalSearchError, RentalSearchResult, search_rentals
+
+if cfg.USE_REAL_AIRBNB_MCP:
+    from tools.rentals_mcp import RentalSearchError, RentalSearchResult, search_rentals
+else:
+    from tools.rentals import RentalSearchError, RentalSearchResult, search_rentals
 
 
 async def run(session: SessionState) -> SearchResults:
@@ -171,6 +175,7 @@ async def _fetch_hotels(profile: TripProfile, session_id: str) -> HotelSearchRes
 async def _fetch_rentals(profile: TripProfile, session_id: str) -> RentalSearchResult | Exception:
     t0 = time.time()
     nights = profile.nights() or 1
+    timeout = cfg.MCP_AIRBNB_TIMEOUT_SEC if cfg.USE_REAL_AIRBNB_MCP else cfg.TOOL_TIMEOUT_SEC
     try:
         result = await asyncio.wait_for(
             search_rentals(
@@ -181,7 +186,7 @@ async def _fetch_rentals(profile: TripProfile, session_id: str) -> RentalSearchR
                 nights=nights,
                 currency=profile.currency.value,
             ),
-            timeout=cfg.TOOL_TIMEOUT_SEC,
+            timeout=timeout,
         )
         logger.log_tool_call(session_id, "search_rentals", len(result.rentals),
                              int((time.time() - t0) * 1000), "success")

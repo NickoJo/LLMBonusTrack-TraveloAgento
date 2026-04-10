@@ -49,6 +49,11 @@ class Config:
         "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
     )
 
+    # Airbnb: реальный MCP-сервер или mock-фикстуры
+    USE_REAL_AIRBNB_MCP: bool = _bool("USE_REAL_AIRBNB_MCP")
+    # Таймаут для MCP-сервера увеличен — npx при первом запуске скачивает пакет
+    MCP_AIRBNB_TIMEOUT_SEC: float = _float("MCP_AIRBNB_TIMEOUT_SEC", 30.0)
+
     # Demo flags (MCP failure simulation)
     MOCK_BOOKING_FAIL: bool = _bool("MOCK_BOOKING_FAIL")
     MOCK_AIRBNB_FAIL: bool = _bool("MOCK_AIRBNB_FAIL")

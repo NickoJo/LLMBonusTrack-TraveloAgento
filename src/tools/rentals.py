@@ -8,7 +8,19 @@ from pathlib import Path
 from config import cfg
 from models.schemas import Accommodation, Currency
 
-MOCKS_DIR = Path(__file__).parent.parent / "data" / "mocks"
+MOCKS_DIR = Path(__file__).parent.parent.parent / "data" / "mocks"
+
+_CITY_MAP = {
+    "тюмень": "tyumen",
+    "барселона": "barcelona",
+    "стамбул": "istanbul",
+    "бали": "bali",
+}
+
+
+def _city_key(name: str) -> str:
+    lower = name.lower().replace(" ", "_")
+    return _CITY_MAP.get(lower, lower)
 
 
 class RentalSearchError(Exception):
@@ -23,7 +35,7 @@ class RentalSearchResult:
 
 
 def _load_fixture(city: str) -> list[dict]:
-    key = city.lower().replace(" ", "_")
+    key = _city_key(city)
     path = MOCKS_DIR / f"rentals_{key}.json"
     if path.exists():
         with open(path, encoding="utf-8") as f:

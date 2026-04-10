@@ -38,48 +38,38 @@
 
 ## Быстрый старт
 
-### 1. Клонировать репозиторий
+Требуется **Python 3.11+**.
+
+### Вариант А — одна команда (рекомендуется)
 
 ```bash
 git clone <repo-url>
 cd LLMBonusTrack-TraveloAgento
+bash setup.sh
 ```
 
-### 2. Установить зависимости
+Скрипт сам проверит версию Python, установит зависимости, запросит API-ключ, скачает модель и построит индекс. В конце скажет как запустить.
 
-Требуется **Python 3.11+**.
+### Вариант Б — по шагам через make
+
+```bash
+git clone <repo-url>
+cd LLMBonusTrack-TraveloAgento
+
+cp .env.example .env          # вставьте DEEPSEEK_API_KEY в .env
+make setup                    # install + model + index
+make run                      # запуск
+```
+
+### Вариант В — вручную
 
 ```bash
 pip install -r requirements.txt
-```
+cp .env.example .env          # вставьте DEEPSEEK_API_KEY
 
-### 3. Настроить переменные окружения
+python src/scripts/download_models.py   # ~120 MB, только первый раз
+python src/scripts/build_index.py       # строим RAG-индекс
 
-```bash
-cp .env.example .env
-```
-
-Открыть `.env` и вставить ключ DeepSeek API:
-
-```env
-DEEPSEEK_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
-
-Ключ можно получить на [platform.deepseek.com](https://platform.deepseek.com).
-
-### 4. Подготовить модель и индекс (один раз)
-
-```bash
-# Скачать embedding-модель (~120 MB, нужен интернет)
-python src/scripts/download_models.py
-
-# Построить векторный индекс Travel KB
-python src/scripts/build_index.py
-```
-
-### 5. Запустить
-
-```bash
 python main.py
 ```
 
