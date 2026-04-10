@@ -1,0 +1,5 @@
+[
+  {"id": "rn-tyu-01", "name": "Cozy apartment in center", "type": "apartment", "price_per_night": 2500, "rating": 4.5, "amenities": ["wifi", "kitchen", "netflix"]},
+  {"id": "rn-tyu-02", "name": "Studio near embankment", "type": "apartment", "price_per_night": 2100, "rating": 4.2, "amenities": ["wifi", "kitchen"]},
+  {"id": "rn-tyu-03", "name": "Raduga Apartments", "type": "apartment", "price_per_night": 3000, "rating": 4.7, "amenities": ["wifi", "kitchen", "parking", "balcony"]}
+]

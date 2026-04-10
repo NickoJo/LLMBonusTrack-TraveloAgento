@@ -16,7 +16,7 @@ C4Container
 
         Container(agent_core, "Agent Core", "Python", "Специализированные агенты: IntentAgent, SearchAgent, OptimizationAgent, ItineraryAgent, BudgetTracker, ReportFormatter")
 
-        Container(pii_guard, "PII Guard", "Python / regex", "Middleware: маскирует PII (email, телефон, карта) regex-паттернами до LLM-вызовов. Хранит token map in-memory")
+        Container(guardrail, "Guardrail", "Python / regex", "Middleware: маскирует PII (email, телефон, карта) regex-паттернами до LLM-вызовов. Защита от prompt injection (EN+RU). Хранит token map in-memory")
 
         Container(mcp_layer, "MCP Tool Layer", "MCP-совместимый контракт\n(mock в PoC: Python / JSON fixtures)", "Read-only интерфейс к внешним API. В PoC — mock-функции с JSON fixtures. Параллельные вызовы (asyncio), timeout, failover. Env-флаги для симуляции сбоев на демо")
 
@@ -36,8 +36,8 @@ C4Container
     Rel(ui, orchestrator, "Передаёт user input, получает ответ", "Python call")
     Rel(orchestrator, agent_core, "Вызывает агентов по очереди / параллельно", "Python call")
     Rel(orchestrator, session_store, "Читает и пишет SessionState", "in-process")
-    Rel(agent_core, pii_guard, "Пропускает все сообщения через PII Guard до LLM", "Python call")
-    Rel(pii_guard, llm_api, "Отправляет sanitized промпты", "HTTPS")
+    Rel(agent_core, guardrail, "Пропускает все сообщения через PII Guard до LLM", "Python call")
+    Rel(guardrail, llm_api, "Отправляет sanitized промпты", "HTTPS")
     Rel(agent_core, mcp_layer, "SearchAgent вызывает инструменты", "Python call")
     Rel(agent_core, retriever, "ItineraryAgent делает RAG-запрос", "Python call")
     Rel(retriever, travel_kb, "Векторный поиск top-5 чанков", "in-process")

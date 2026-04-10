@@ -1,0 +1,7 @@
+[
+  {"id": "ht-ist-01", "name": "Four Seasons Sultanahmet", "type": "hotel", "price_per_night": 480, "rating": 4.9, "amenities": ["wifi", "pool", "spa", "restaurant", "bosphorus_view"]},
+  {"id": "ht-ist-02", "name": "Pera Palace Hotel", "type": "hotel", "price_per_night": 210, "rating": 4.7, "amenities": ["wifi", "restaurant", "bar", "historic"]},
+  {"id": "ht-ist-03", "name": "Witt Istanbul", "type": "hotel", "price_per_night": 165, "rating": 4.5, "amenities": ["wifi", "kitchen", "terrace"]},
+  {"id": "ht-ist-04", "name": "Mercure Istanbul City", "type": "hotel", "price_per_night": 95, "rating": 4.2, "amenities": ["wifi", "gym", "breakfast"]},
+  {"id": "ht-ist-05", "name": "Hotel Sultanhan", "type": "hotel", "price_per_night": 75, "rating": 4.0, "amenities": ["wifi", "breakfast"]}
+]

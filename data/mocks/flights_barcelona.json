@@ -1,0 +1,7 @@
+[
+  {"id": "fl-bcn-01", "origin": "Moscow", "destination": "Barcelona", "departure": "2025-06-15T07:00:00", "arrival": "2025-06-15T10:30:00", "price": 180, "airline": "Vueling", "stops": 0, "connection_time_min": null},
+  {"id": "fl-bcn-02", "origin": "Moscow", "destination": "Barcelona", "departure": "2025-06-15T12:00:00", "arrival": "2025-06-15T17:15:00", "price": 220, "airline": "Iberia", "stops": 1, "connection_time_min": 70},
+  {"id": "fl-bcn-03", "origin": "Moscow", "destination": "Barcelona", "departure": "2025-06-15T09:00:00", "arrival": "2025-06-15T13:00:00", "price": 155, "airline": "Ryanair", "stops": 0, "connection_time_min": null},
+  {"id": "fl-bcn-04", "origin": "Moscow", "destination": "Barcelona", "departure": "2025-06-15T16:30:00", "arrival": "2025-06-15T21:45:00", "price": 195, "airline": "EasyJet", "stops": 1, "connection_time_min": 45},
+  {"id": "fl-bcn-05", "origin": "Moscow", "destination": "Barcelona", "departure": "2025-06-15T22:00:00", "arrival": "2025-06-16T02:15:00", "price": 140, "airline": "Ryanair", "stops": 0, "connection_time_min": null}
+]

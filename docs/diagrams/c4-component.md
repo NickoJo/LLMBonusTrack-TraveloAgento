@@ -8,10 +8,10 @@ C4Component
 
     Person(user, "Путешественник")
     Container_Ext(ui, "Chat Interface")
-    Container_Ext(pii_guard, "PII Guard")
+    Container_Ext(guardrail, "Guardrail")
     Container_Ext(mcp_layer, "MCP Tool Layer")
     Container_Ext(retriever, "RAG Retriever")
-    Container_Ext(llm_api, "Claude API")
+    Container_Ext(llm_api, "DeepSeek Chat API")
 
     Container_Boundary(orchestrator_c, "Orchestrator") {
         Component(session_mgr, "SessionManager", "Python class", "Создаёт и хранит SessionState. Управляет жизненным циклом сессии")
@@ -40,10 +40,10 @@ C4Component
     Rel(router, report_fmt, "Шаг 5: отформатировать", "call")
     Rel(router, hitl, "Checkpoint после шага 3 и при превышении бюджета", "call")
     Rel(hitl, ui, "Запрашивает подтверждение у пользователя", "Python call")
-    Rel(intent_agent, pii_guard, "Все LLM-промпты через PII Guard", "call")
-    Rel(optim_agent, pii_guard, "Все LLM-промпты через PII Guard", "call")
-    Rel(itinerary_agent, pii_guard, "Все LLM-промпты через PII Guard", "call")
-    Rel(pii_guard, llm_api, "Sanitized промпт → LLM ответ", "HTTPS")
+    Rel(intent_agent, guardrail, "Все LLM-промпты через PII Guard", "call")
+    Rel(optim_agent, guardrail, "Все LLM-промпты через PII Guard", "call")
+    Rel(itinerary_agent, guardrail, "Все LLM-промпты через PII Guard", "call")
+    Rel(guardrail, llm_api, "Sanitized промпт → LLM ответ", "HTTPS")
     Rel(search_agent, mcp_layer, "Tool calls: search_flights, search_hotels, search_rentals", "MCP")
     Rel(itinerary_agent, retriever, "RAG query по destination", "call")
     Rel(retry_mgr, search_agent, "Retry при MCP ошибке", "call")

@@ -1,0 +1,7 @@
+[
+  {"id": "fl-tyu-01", "origin": "Москва", "destination": "Тюмень", "departure": "2025-05-10T06:30:00", "arrival": "2025-05-10T09:45:00", "price": 4200, "airline": "Победа", "stops": 0, "connection_time_min": null},
+  {"id": "fl-tyu-02", "origin": "Москва", "destination": "Тюмень", "departure": "2025-05-10T11:00:00", "arrival": "2025-05-10T14:20:00", "price": 5100, "airline": "Аэрофлот", "stops": 0, "connection_time_min": null},
+  {"id": "fl-tyu-03", "origin": "Москва", "destination": "Тюмень", "departure": "2025-05-10T15:45:00", "arrival": "2025-05-10T19:10:00", "price": 3800, "airline": "S7", "stops": 0, "connection_time_min": null},
+  {"id": "fl-tyu-04", "origin": "Москва", "destination": "Тюмень", "departure": "2025-05-10T08:00:00", "arrival": "2025-05-10T13:30:00", "price": 3200, "airline": "Уральские авиалинии", "stops": 1, "connection_time_min": 55},
+  {"id": "fl-tyu-05", "origin": "Москва", "destination": "Тюмень", "departure": "2025-05-10T20:30:00", "arrival": "2025-05-10T23:50:00", "price": 4600, "airline": "Аэрофлот", "stops": 0, "connection_time_min": null}
+]

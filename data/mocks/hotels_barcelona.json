@@ -1,0 +1,7 @@
+[
+  {"id": "ht-bcn-01", "name": "Hotel Arts Barcelona", "type": "hotel", "price_per_night": 320, "rating": 4.8, "amenities": ["wifi", "pool", "spa", "restaurant", "beach_access"]},
+  {"id": "ht-bcn-02", "name": "Barcelo Raval", "type": "hotel", "price_per_night": 145, "rating": 4.3, "amenities": ["wifi", "gym", "restaurant"]},
+  {"id": "ht-bcn-03", "name": "Chic & Basic Born", "type": "hotel", "price_per_night": 95, "rating": 4.1, "amenities": ["wifi", "breakfast"]},
+  {"id": "ht-bcn-04", "name": "W Barcelona", "type": "hotel", "price_per_night": 280, "rating": 4.7, "amenities": ["wifi", "pool", "spa", "sea_view", "restaurant"]},
+  {"id": "ht-bcn-05", "name": "Hostal Eden", "type": "hotel", "price_per_night": 68, "rating": 3.9, "amenities": ["wifi"]}
+]

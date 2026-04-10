@@ -64,7 +64,7 @@ flowchart LR
         FLIGHTS_API[/"Flights API\nmock"/]
         BOOKING_API[/"Booking API\nmock"/]
         AIRBNB_API[/"Airbnb API\nmock failover"/]
-        CLAUDE_API[/"Claude API\nAnthropic"/]
+        DEEPSEEK_API[/"DeepSeek Chat API\nOpenAI-compatible"/]
     end
 
     %% Input flow
@@ -75,8 +75,8 @@ flowchart LR
     SANITIZED --> LLM1
 
     %% Intent flow
-    LLM1 -->|"LLM prompt"| CLAUDE_API
-    CLAUDE_API -->|"structured response"| TRIP_PROFILE
+    LLM1 -->|"LLM prompt"| DEEPSEEK_API
+    DEEPSEEK_API -->|"structured response"| TRIP_PROFILE
     TRIP_PROFILE --> VALIDATION
     VALIDATION -->|"сохраняет"| SS
     BUDGET_1 -->|"читает"| TRIP_PROFILE
@@ -96,8 +96,8 @@ flowchart LR
 
     %% Optimization flow
     SEARCH_RES --> LLM2
-    LLM2 -->|"LLM prompt"| CLAUDE_API
-    CLAUDE_API -->|"ranking + selection"| PKG
+    LLM2 -->|"LLM prompt"| DEEPSEEK_API
+    DEEPSEEK_API -->|"ranking + selection"| PKG
     PKG --> BUDGET_2
     BUDGET_2 -->|"сохраняет"| SS
     PKG -->|"сохраняет"| SS
@@ -111,8 +111,8 @@ flowchart LR
     %% Generation flow
     EXT_DATA --> LLM3
     PKG --> LLM3
-    LLM3 -->|"LLM prompt + <external_data>"| CLAUDE_API
-    CLAUDE_API -->|"day-by-day plan"| LLM3
+    LLM3 -->|"LLM prompt + <external_data>"| DEEPSEEK_API
+    DEEPSEEK_API -->|"day-by-day plan"| LLM3
     LLM3 --> FORMATTER
     FORMATTER --> FINAL
     FINAL -->|"показывает план"| USER

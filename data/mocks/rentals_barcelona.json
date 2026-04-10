@@ -1,0 +1,5 @@
+[
+  {"id": "rn-bcn-01", "name": "Cozy flat in Gothic Quarter", "type": "apartment", "price_per_night": 110, "rating": 4.6, "amenities": ["wifi", "kitchen", "ac"]},
+  {"id": "rn-bcn-02", "name": "Sunny studio near Sagrada Familia", "type": "apartment", "price_per_night": 85, "rating": 4.3, "amenities": ["wifi", "kitchen"]},
+  {"id": "rn-bcn-03", "name": "Terrace apartment Eixample", "type": "apartment", "price_per_night": 140, "rating": 4.7, "amenities": ["wifi", "kitchen", "terrace", "ac"]}
+]

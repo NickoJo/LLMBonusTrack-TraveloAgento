@@ -105,18 +105,18 @@ grep '"session_id": "sess_abc123"' logs/travelo.jsonl | jq -s 'sort_by(.timestam
 ```
 session_start
   └─ agent_call: IntentAgent (success, 2100ms)
-       └─ llm_call: claude-sonnet-4-6 (in=450, out=120, 2050ms)
+       └─ llm_call: deepseek-chat (in=450, out=120, 2050ms)
   └─ agent_call: BudgetTracker early (success, 2ms)
   └─ agent_call: SearchAgent (success, 3200ms)
        └─ tool_call: search_flights (success, 1800ms, results=5)
        └─ tool_call: search_hotels (success, 2100ms, results=5)
   └─ agent_call: OptimizationAgent (success, 1900ms)
-       └─ llm_call: claude-sonnet-4-6 (in=800, out=80, 1850ms)
+       └─ llm_call: deepseek-chat (in=800, out=80, 1850ms)
   └─ agent_call: BudgetTracker final (success, 1ms)
   └─ hitl_checkpoint: package_confirm (user_decision=confirmed)
   └─ rag_query (results=5, top_score=0.28)
   └─ agent_call: ItineraryAgent (success, 3100ms)
-       └─ llm_call: claude-sonnet-4-6 (in=1200, out=600, 3050ms)
+       └─ llm_call: deepseek-chat (in=1200, out=600, 3050ms)
   └─ agent_call: ReportFormatter (success, 12ms)
 session_end (status=completed, turns=4, llm_calls=3, total=11500ms)
 ```

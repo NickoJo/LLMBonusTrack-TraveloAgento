@@ -1,0 +1,7 @@
+.env
+logs/
+data/travel_kb/index/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store

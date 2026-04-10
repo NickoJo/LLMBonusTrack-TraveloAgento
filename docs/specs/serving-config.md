@@ -23,7 +23,7 @@ TraveloAgento/
 │   └── report_formatter.py
 │
 ├── middleware/
-│   └── pii_guard.py
+│   └── guardrail.py
 │
 ├── retrieval/
 │   ├── retriever.py

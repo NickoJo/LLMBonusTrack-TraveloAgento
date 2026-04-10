@@ -1,0 +1,7 @@
+[
+  {"id": "ht-bali-01", "name": "Four Seasons Resort Bali at Sayan", "type": "hotel", "price_per_night": 850, "rating": 4.9, "amenities": ["wifi", "pool", "spa", "restaurant", "jungle_view"]},
+  {"id": "ht-bali-02", "name": "Alaya Resort Ubud", "type": "hotel", "price_per_night": 180, "rating": 4.7, "amenities": ["wifi", "pool", "spa", "breakfast"]},
+  {"id": "ht-bali-03", "name": "Kuta Beach Heritage Hotel", "type": "hotel", "price_per_night": 95, "rating": 4.3, "amenities": ["wifi", "pool", "beach_access", "restaurant"]},
+  {"id": "ht-bali-04", "name": "The Layar Private Villas", "type": "hotel", "price_per_night": 320, "rating": 4.8, "amenities": ["wifi", "private_pool", "butler", "breakfast"]},
+  {"id": "ht-bali-05", "name": "Padma Resort Legian", "type": "hotel", "price_per_night": 145, "rating": 4.5, "amenities": ["wifi", "pool", "beach_access", "gym"]}
+]

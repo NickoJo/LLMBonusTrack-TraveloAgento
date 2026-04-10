@@ -1,0 +1,7 @@
+[
+  {"id": "ht-tyu-01", "name": "Отель Восток", "type": "hotel", "price_per_night": 3200, "rating": 4.3, "amenities": ["wifi", "breakfast", "parking"]},
+  {"id": "ht-tyu-02", "name": "Евроотель Тюмень", "type": "hotel", "price_per_night": 4500, "rating": 4.6, "amenities": ["wifi", "breakfast", "gym", "restaurant"]},
+  {"id": "ht-tyu-03", "name": "Апарт-отель Центральный", "type": "apartment", "price_per_night": 2800, "rating": 4.1, "amenities": ["wifi", "kitchen", "washing_machine"]},
+  {"id": "ht-tyu-04", "name": "Гостиница Прометей", "type": "hotel", "price_per_night": 2200, "rating": 3.8, "amenities": ["wifi", "parking"]},
+  {"id": "ht-tyu-05", "name": "Отель Сибирь", "type": "hotel", "price_per_night": 3800, "rating": 4.4, "amenities": ["wifi", "breakfast", "spa", "restaurant"]}
+]

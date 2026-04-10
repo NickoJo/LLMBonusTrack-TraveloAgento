@@ -20,7 +20,7 @@ async def run_session(session: SessionState, user_message: str):
             return circuit_break(session, reason=limit_exceeded)
 
         # 1. PII Guard — всегда первый
-        clean_message = pii_guard.sanitize(user_message, session.pii_token_map)
+        clean_message = guardrail.sanitize(user_message, session.pii_token_map)
 
         # 2. Добавить в историю
         session.dialog_history.append(Message(role="user", content=clean_message))

@@ -183,4 +183,4 @@ def check_limits(state: SessionState) -> Optional[str]:
 | Изоляция | Каждая сессия — отдельный объект в памяти |
 | Разделяемые ресурсы | Travel KB (read-only, shared), LLM API client (shared) |
 | Конкурентный доступ к KB | Безопасен (только чтение) |
-| Конкурентные LLM вызовы | Ограничены rate limit Anthropic API (не в scope PoC) |
+| Конкурентные LLM вызовы | Ограничены rate limit DeepSeek API (не в scope PoC) |
