@@ -33,3 +33,103 @@
 - Мобильное приложение — только веб-интерфейс или CLI
 - Уведомления об изменении цен после планирования
 - Страхование путешествий, исследование локальных маршрутов в чатах в соцсетях
+
+---
+
+## Быстрый старт
+
+### 1. Клонировать репозиторий
+
+```bash
+git clone <repo-url>
+cd LLMBonusTrack-TraveloAgento
+```
+
+### 2. Установить зависимости
+
+Требуется **Python 3.11+**.
+
+```bash
+pip install -r requirements.txt
+```
+
+### 3. Настроить переменные окружения
+
+```bash
+cp .env.example .env
+```
+
+Открыть `.env` и вставить ключ DeepSeek API:
+
+```env
+DEEPSEEK_API_KEY=sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+Ключ можно получить на [platform.deepseek.com](https://platform.deepseek.com).
+
+### 4. Подготовить модель и индекс (один раз)
+
+```bash
+# Скачать embedding-модель (~120 MB, нужен интернет)
+python src/scripts/download_models.py
+
+# Построить векторный индекс Travel KB
+python src/scripts/build_index.py
+```
+
+### 5. Запустить
+
+```bash
+python main.py
+```
+
+---
+
+## Структура проекта
+
+```
+.
+├── src/
+│   ├── agents/          # Агенты: Intent, Search, Optimization, Itinerary, Report
+│   ├── middleware/      # Guardrail: PII-маскировка и защита от prompt injection
+│   ├── models/          # Pydantic-схемы контрактов
+│   ├── retrieval/       # RAG: ChromaDB + sentence-transformers
+│   ├── tools/           # MCP-совместимые инструменты (mock JSON fixtures)
+│   ├── scripts/         # Утилиты: download_models, build_index
+│   └── config.py        # Централизованная конфигурация
+├── data/
+│   ├── mocks/           # JSON-фикстуры: рейсы и отели (Тюмень, Барселона, Стамбул, Бали)
+│   └── travel_kb/       # Markdown-база знаний + ChromaDB-индекс
+├── tests/
+│   └── evals/           # Eval-тесты: happy path, edge cases, PII safety, latency
+├── docs/                # Архитектура, диаграммы, спецификации
+├── main.py              # CLI точка входа
+└── .env.example         # Шаблон переменных окружения
+```
+
+---
+
+## Demo-флаги (симуляция сбоев)
+
+Позволяют протестировать failover без реального отключения API:
+
+```bash
+# Отель-сервис недоступен → failover на Airbnb
+MOCK_BOOKING_FAIL=true python main.py
+
+# Оба отельных источника недоступны → degraded mode (только рейс)
+MOCK_BOOKING_FAIL=true MOCK_AIRBNB_FAIL=true python main.py
+
+# Замедление поиска рейсов (симуляция сетевой задержки)
+MOCK_FLIGHTS_DELAY_SEC=2 python main.py
+```
+
+---
+
+## Тесты
+
+```bash
+python -m pytest tests/evals/ -v
+```
+
+39 тестов покрывают: полный пайплайн, edge cases (нет рейсов, превышение бюджета, circuit breaker), PII safety (12 проверок), latency (детерминированные компоненты).
