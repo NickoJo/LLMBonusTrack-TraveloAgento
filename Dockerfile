@@ -32,12 +32,18 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Node.js + npx — нужны для Airbnb MCP-сервера (@openbnb/mcp-server-airbnb)
+# Node.js + npx — для Airbnb MCP-сервера (@openbnb/mcp-server-airbnb)
+# curl — для установки uv
 RUN apt-get update && apt-get install -y --no-install-recommends \
         nodejs \
         npm \
+        curl \
     && npm install -g npx \
     && rm -rf /var/lib/apt/lists/*
+
+# uv — для Aviasales MCP-сервера (flights-mcp)
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="/root/.local/bin:$PATH"
 
 # Копируем установленные Python-пакеты из builder
 COPY --from=builder /usr/local/lib/python3.11/site-packages /usr/local/lib/python3.11/site-packages

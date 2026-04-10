@@ -51,8 +51,13 @@ class Config:
 
     # Airbnb: реальный MCP-сервер или mock-фикстуры
     USE_REAL_AIRBNB_MCP: bool = _bool("USE_REAL_AIRBNB_MCP")
-    # Таймаут для MCP-сервера увеличен — npx при первом запуске скачивает пакет
     MCP_AIRBNB_TIMEOUT_SEC: float = _float("MCP_AIRBNB_TIMEOUT_SEC", 30.0)
+
+    # Aviasales: реальный MCP-сервер или mock-фикстуры
+    USE_REAL_AVIASALES_MCP: bool = _bool("USE_REAL_AVIASALES_MCP")
+    AVIASALES_API_TOKEN: str = os.getenv("AVIASALES_API_TOKEN", "")
+    AVIASALES_MARKER: str = os.getenv("AVIASALES_MARKER", "")
+    MCP_AVIASALES_TIMEOUT_SEC: float = _float("MCP_AVIASALES_TIMEOUT_SEC", 30.0)
 
     # Demo flags (MCP failure simulation)
     MOCK_BOOKING_FAIL: bool = _bool("MOCK_BOOKING_FAIL")

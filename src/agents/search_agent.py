@@ -12,7 +12,11 @@ from middleware import logger
 from models.schemas import (
     Accommodation, Flight, SearchResults, SessionState, TripProfile,
 )
-from tools.flights import FlightSearchError, FlightSearchResult, search_flights
+if cfg.USE_REAL_AVIASALES_MCP:
+    from tools.flights_mcp import FlightSearchError, FlightSearchResult, search_flights
+else:
+    from tools.flights import FlightSearchError, FlightSearchResult, search_flights
+
 from tools.hotels import HotelSearchError, HotelSearchResult, search_hotels
 
 if cfg.USE_REAL_AIRBNB_MCP:
@@ -93,6 +97,7 @@ async def run(session: SessionState) -> SearchResults:
 
 async def _fetch_flights(profile: TripProfile, session_id: str) -> FlightSearchResult:
     t0 = time.time()
+    timeout = cfg.MCP_AVIASALES_TIMEOUT_SEC if cfg.USE_REAL_AVIASALES_MCP else cfg.TOOL_TIMEOUT_SEC
     try:
         result = await asyncio.wait_for(
             search_flights(
@@ -103,7 +108,7 @@ async def _fetch_flights(profile: TripProfile, session_id: str) -> FlightSearchR
                 passengers=profile.travelers or 1,
                 currency=profile.currency.value,
             ),
-            timeout=cfg.TOOL_TIMEOUT_SEC,
+            timeout=timeout,
         )
         logger.log_tool_call(session_id, "search_flights", len(result.flights),
                              int((time.time() - t0) * 1000), "success")
@@ -122,7 +127,7 @@ async def _fetch_flights(profile: TripProfile, session_id: str) -> FlightSearchR
                     passengers=profile.travelers or 1,
                     currency=profile.currency.value,
                 ),
-                timeout=cfg.TOOL_TIMEOUT_SEC,
+                timeout=timeout,
             )
             logger.log_tool_call(session_id, "search_flights", len(result.flights),
                                  int((time.time() - t0) * 1000), "success_retry")
